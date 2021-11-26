@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Country } from '../interfaces/pais.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,11 @@ export class PaisService {
   constructor(private http: HttpClient) { }
 
   //para que un observable se dispare por lo menos debo tener un subscribe
-  buscarPais( termino: string ): Observable<any> {
+  buscarPais( termino: string ): Observable<Country[]> {
 
     const url = `${ this.apuURL }/name/${ termino }`;
 
-    return this.http.get( url )
+    return this.http.get<Country[]>( url )
     /*
     .pipe(
       //el of transforma lo que sea en un observable
