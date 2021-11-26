@@ -24,7 +24,7 @@
   No se encontró nada con el termino ABCASD {{ termino }}
 </div>
 
-<div class="row">
+<div class="row" *ngIf="paises.length > 0">
   <div class="col">
     <table class="table table-hover">
       <thead>
@@ -37,12 +37,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Bandera</td>
-          <td>1234567</td>
+        <tr *ngFor="let pais of paises; let i = index">
+          <td>{{ i + 1 }}</td>
           <td>
-            <a href="/pais/cri">Ver...</a>
+            <img
+              class="small-flag"
+              [src]="pais.flags.png"
+              [alt]="pais.name.official"
+              [title]="pais.name.official"
+            >
+          </td>
+          <td>{{ pais.name.common}}</td>
+          <td>{{ pais.population | number }}</td>
+          <td>
+            <a
+            [routerLink]="['/pais', pais.alpha2Code]"
+            routerLinkActive="router-link-active"
+          >
+            Ver...</a>
           </td>
         </tr>
       </tbody>
