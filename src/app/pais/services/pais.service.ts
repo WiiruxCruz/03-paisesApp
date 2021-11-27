@@ -9,14 +9,14 @@ import { Country } from '../interfaces/pais.interfaces';
 })
 export class PaisService {
 
-  private apuURL: string = 'https://restcountries.com/v3.1';
+  private apiURL: string = 'https://restcountries.com/v3.1';
 
   constructor(private http: HttpClient) { }
 
   //para que un observable se dispare por lo menos debo tener un subscribe
   buscarPais( termino: string ): Observable<Country[]> {
 
-    const url = `${ this.apuURL }/name/${ termino }`;
+    const url = `${ this.apiURL }/name/${ termino }`;
 
     return this.http.get<Country[]>( url )
     /*
@@ -30,7 +30,7 @@ export class PaisService {
 
   buscarCapital( termino: string ): Observable<Country[]> {
 
-    const url = `${ this.apuURL }/capital/${ termino }`;
+    const url = `${ this.apiURL }/capital/${ termino }`;
 
     return this.http.get<Country[]>( url )
     /*
@@ -40,6 +40,13 @@ export class PaisService {
     )
     */
     ;
+  }
+
+  getPaisPorAlpha( id: string ): Observable<Country[]>{
+    const url = `${ this.apiURL }/alpha/${ id }`;
+
+    return this.http.get<Country[]>( url );
+
   }
 
 }
