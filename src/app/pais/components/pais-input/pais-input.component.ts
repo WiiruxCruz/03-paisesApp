@@ -29,6 +29,7 @@ export class PaisInputComponent implements OnInit{
     .subscribe(
       valor => {
         console.log('debouncer:', valor);
+        this.onDebounce.emit( valor );
       }
     );
   }
@@ -37,10 +38,8 @@ export class PaisInputComponent implements OnInit{
     this.onEnter.emit( this.termino );
   }
 
-  teclaPresionada( event: any ) {
+  teclaPresionada( ) {
     //const valor = event.target.value;
-    //console.log(this.termino);
-
     this.debouncer.next( this.termino );
   }
 

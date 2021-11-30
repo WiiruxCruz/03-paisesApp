@@ -15,7 +15,7 @@ export class PaisService {
   constructor(private http: HttpClient) { }
 
   get httpParams() {
-    return new HttpParams().set('fields', 'name,capital,alpha2Code,flags,population');
+    return new HttpParams().set('fields', 'name,capital,alpha2Code,flags,population,cca2');
   }
 
   //para que un observable se dispare por lo menos debo tener un subscribe

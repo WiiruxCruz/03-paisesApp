@@ -42,6 +42,10 @@ export class PorRegionComponent {
     this.paisService.getBuscarRegion( this.regionActiva )
     .subscribe( paises => {
       console.log( paises )
+      //aqui se hizo esto porque al buscar por region no se cargaba la clave del país a 2 letras
+      //debido a que la busqueda por region ocupa v2 y la normal v3
+      //entonces los campos eran difernetes, de esta manaera se logra hacer ese parche
+      paises.forEach( idx => idx.cca2 = idx.alpha2Code );
       this.paises = paises;
     });
   }
